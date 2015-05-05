@@ -1,0 +1,178 @@
+<{php}>
+$ua = $_SERVER['HTTP_USER_AGENT'];
+if ((ereg("Windows",$ua) > 0) && (ereg("MSIE",$ua) > 0)) {if (ereg("MSIE 6.",$ua) > 0) {echo '';}} else {
+echo '<?xml version="1.0" encoding="'._CHARSET.'"?>';echo "\n";}
+<{/php}>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+<link href="<{$xoops_url}>/favicon.ico" rel="SHORTCUT ICON" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_url}>/xoops.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<{$xoops_themecss}>" />
+<!-- RMV: added module header -->
+<{$xoops_module_header}>
+</head>
+
+
+<body class="body">
+	<div class="container">
+		<div id="header_wrap">
+			<h1><a href="<{$xoops_url}>/" name="top"><{$xoops_sitename}></a><br />
+			<span><{$xoops_pagetitle}></span></h1>
+			<fieldset>
+				<legend>サイト内検索</legend>
+				<form action="<{$xoops_url}>/search.php" method="get">
+					<input type="text" name="query" class="input" value="サイト内検索はこちら" onmouseover="this.focus();" onfocus="if(this.value == 'サイト内検索はこちら') this.value = '';" />
+					<input type="hidden" name="action" value="results" />
+					<input type="image" src="<{$xoops_url}>/themes/<{$xoops_theme}>/image/button.jpg" class="button" alt="サイト内検索" />
+				</form>
+			</fieldset>
+			<hr />
+		</div>
+		<div class="top_menu_0_wrap">
+			<ul class="top_menu_0">
+				<{foreach from=$xugj_menus item="menu0"}>
+					<{if $menu0.dirname == $xoops_dirname}>
+						<{assign var="xugj_menus1" value=$menu0.sub}>
+						<{assign var="menu0_class" value="selected"}>
+					<{else}>
+						<{assign var="menu0_class" value=""}>
+					<{/if}>
+					<li class="menu_level0<{$menu0_class}>"><!--
+							--><a href="<{$xoops_url}>/modules/<{$menu0.dirname}>/<{$menu0.url}>"><{$menu0.name}></a><!--
+					--></li>
+				<{/foreach}>
+			</ul>
+		</div>
+		<div class="info">
+				<ol id="theme_breadcrumbs">
+					<li><a href="<{$xoops_url}>/">TOP</a></li><!--
+					--><{foreach from=$xoops_breadcrumbs item="item"}><!--
+						--><{if $item.url}><!--
+							--><li>&nbsp;>&nbsp;<a href="<{$item.url}>"><{$item.name}></a></li><!--
+						--><{else}><!--
+							--><li>&nbsp;::&nbsp;<{$item.name}></li><{/if}>
+					<{/foreach}>
+				</ol>
+			<p><{if $xoops_isuser}>
+				Welcome&nbsp;<{$xoops_uname}>&nbsp;!&nbsp;When You stop reading of the site, please 
+				<a href="<{$xoops_url}>/user.php?op=logout">log out</a>
+			<{else}>
+					<a href="http://www.expiece.com/html/"><img src="<{$xoops_imageurl}>image/none.gif" width="1px" height="1px" alt="Theme Designed by EXTRAFFIC" /></a>
+					It is <{php}>echo (date ("Y-n-j G:i"));<{/php}> that you displayed this page
+			<{/if}></p>
+			<hr />
+		</div>
+		<div id="l_clr_r_wrap">
+			<{if $xoops_showlblock == 1}>
+				<div id="left_center_wrap<{if ! $xoops_showrblock == 1}>_rc_none<{/if}>">
+			<{/if}>
+			<div id="centercolumn<{if ! $xoops_showlblock == 1}>_lc_none<{/if}><{if ! $xoops_showrblock == 1}>_rc_none<{/if}>">
+				<{if $xoops_showcblock == 1}>
+					<div id="centerCcolumn">
+						<{foreach item=block from=$xoops_ccblocks}>
+							<{if ! $block.title|strstr:"none"}>
+								<h2 class="blockTitle"><{$block.title}></h2>
+							<{/if}>
+							<div class="blockContent"><{$block.content}></div>
+							<hr />
+						<{/foreach}>
+					</div>
+				<{/if}>
+				<{if $xoops_contents}>
+					<div id="content"><{$xoops_contents}></div>
+				<{/if}>
+ 			<{if $xoops_clblocks || $xoops_crblocks }>
+				<div id="cl_cr_wrap">
+					<{if $xoops_clblocks}>
+						<div id="centerLcolumn">
+							<dl class="centerL_in_left">
+								<{foreach item=block from=$xoops_clblocks name=block}>
+									<{if $smarty.foreach.block.iteration % 2}><{else}>
+										<dt class="blockTitle"><{$block.title}></dt>
+										<dd class="blockContent"><{$block.content}><hr /></dd>
+									<{/if}>
+								<{/foreach}>
+							</dl>
+							<dl class="centerL_in_right">
+								<{foreach item=block from=$xoops_clblocks name=block}>
+									<{if $smarty.foreach.block.iteration % 2}>
+										<dt class="blockTitle"><{$block.title}></dt>
+										<dd class="blockContent"><{$block.content}><hr /></dd>
+									<{/if}>
+								<{/foreach}>
+							</dl>
+						</div>
+					<{/if}>
+					<{if $xoops_crblocks}>
+						<div id="centerRcolumn">
+							<dl class="centerR_in_left">
+								<{foreach item=block from=$xoops_crblocks name=block}>
+									<{if $smarty.foreach.block.iteration % 2}>
+										<dt class="blockTitle"><{$block.title}></dt>
+										<dd class="blockContent"><{$block.content}><hr /></dd>
+									<{/if}>
+								<{/foreach}>
+							</dl>
+							<dl class="centerR_in_right">
+								<{foreach item=block from=$xoops_crblocks name=block}>
+									<{if $smarty.foreach.block.iteration % 2}><{else}>
+										<dt class="blockTitle"><{$block.title}></dt>
+										<dd class="blockContent"><{$block.content}><hr /></dd>
+									<{/if}>
+								<{/foreach}>
+							</dl>
+						</div>
+					<{/if}>
+				</div>
+			<{/if}>
+				<p class="scroll"><a href="#top"><img src="<{$xoops_imageurl}>image/none.gif" width="39" height="10" alt="ページ上部へ移動" /></a></p>
+			</div>
+			<{if $xoops_showlblock == 1}>
+				<div id="leftcolumn<{if ! $xoops_showrblock == 1}>_rc_none<{/if}>">
+					<{foreach item=block from=$xoops_lblocks}>
+						<{if ! $block.title|strstr:"none"}>
+							<h2 class="blockTitle"><{$block.title}></h2>
+						<{/if}>
+						<div class="blockContent"><{$block.content}></div>
+						<hr />
+					<{/foreach}>
+				</div>
+			<{/if}>
+			<{if $xoops_showlblock == 1}>
+				</div>
+			<{/if}>
+			<{if $xoops_showrblock == 1}>
+				<div id="rightcolumn">
+					<{foreach item=block from=$xoops_rblocks}>
+						<{if ! $block.title|strstr:"none"}>
+							<h2 class="blockTitle"><{$block.title}></h2>
+						<{/if}>
+						<div class="blockContent"><{$block.content}></div>
+						<hr />
+					<{/foreach}>
+				</div>
+			<{/if}>
+	</div>
+		<{if $xoops_banner != '&nbsp;' && $xoops_banner != ''}>
+			<div id="banner" style="text-align: center"><{$xoops_banner}></div>
+		<{/if}>
+		<p id="footerbar">
+			<{$xoops_footer}>&nbsp;&nbsp;Theme Designed by&nbsp;<a href="http://www.expiece.com/html/" target="_blank"><cite>EXTRAFFIC</cite></a>
+		</p>
+	</div>
+
+</body>
+</html>
